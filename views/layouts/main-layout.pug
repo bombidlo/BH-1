@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{title}
+        link(rel="stylesheet", href="/css/main.css")
+        block styles
+    body
+        header.main-header
+            nav.main-header__nav
+                ul.main-header__item-list
+                    li.main-header__item
+                        a(href="/", class=(path === '/' ? 'active' : '')) Кандидаты
+                    li.main-header__item
+                        a(href="/add" class=(path === '/add' ? 'active' : '')) Добавить кандидата
+                    if(isAuthenticated)
+                        li.main-header__item
+                            a(href="/admin/add-product", class=(path === '/admin/add-product' ? 'active' : '')) Add Product
+                        li.main-header__item
+                            a(href="/admin/products", class=(path === '/admin/products' ? 'active' : '')) Admin Products
+                    if(user)
+                        if (user.email === "bombidlo@gmail.com")
+                            li.main-header__item
+                                a(href="/token", class=(path === 'token' ? 'active' : '')) Токен
+                    li.main-header__item
+                        a(href="/chat" class=(path === '/chat' ? 'active' : '')) Чат  
+        block content

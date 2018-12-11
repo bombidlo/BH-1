@@ -1,0 +1,3 @@
+const token = "d0b7ea26442f31832ab59a7ef45a197d3f014327b32df2368fa071827974cd3e623c5e135c51f1915eb43";
+
+module.exports = token;

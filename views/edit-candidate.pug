@@ -1,0 +1,50 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        form.product-form(action="/edit-candidate",  method="POST")
+            .form-control
+                
+                a(href=`https://vk.com/id${candidate.id}`)
+                    img(src=`${candidate.photo}`, href="#")
+            .form-control
+                label Добавил: #{admin.fio}
+            .form-control
+                label(for="fio") ФИО
+                input(type="text", name="fio" value=`${candidate.fio}`)#fio
+            .form-control
+                label(for="birthData") Дата рождения
+                input(type="text", name="birthDate" value=`${candidate.birthDate}`)#imageUrl
+            .form-control
+                label(for="comment") Комментарий
+                textarea(name="comment", rows="5")#comment #{candidate.comment} 
+            .form-control
+                select(name="status", required)#status
+                    if candidate.status == "Добавлен"
+                        option(value="Добавлен", selected) Добавлен
+                    else
+                        option(value="Добавлен") Добавлен
+                    
+                    if candidate.status == "В ожидании"
+                        option(value="В ожидании", selected) В ожидании
+                    else
+                        option(value="В ожидании") В ожидании
+                    
+                    if candidate.status == "Исключен"
+                        option(value="Исключен", selected) Исключен
+                    else
+                        option(value="Исключен") Исключен
+                    
+                    if candidate.status == "Ливнул"
+                        option(value="Ливнул", selected) Ливнул
+                    else
+                        option(value="Ливнул") Ливнул
+            .form-control
+                input(type="hidden", name="candidateId" value=`${candidate._id}`)
+                button.btn(type="submit") Изменить данные
+
+        

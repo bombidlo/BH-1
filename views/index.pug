@@ -1,0 +1,50 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/product.css")
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    .status
+        ul.status-list
+            li
+                span.green-dot
+                span Добавлен
+            li
+                span.yellow-dot
+                span В Ожидании
+            li
+                span.red-dot
+                span Исключен
+            li
+                span.black-dot
+                span Ливнул
+    main
+        if candidates.length > 0
+            .grid
+                each candidate in candidates
+                    article.card.product-item
+                        header.card__header
+                            h1.product__title #{candidate.fio}
+                        div.card__image
+                            if candidate.status == "В ожидании"
+                                span.yellow-dot-canidate 
+                            if candidate.status == "Добавлен"
+                                span.green-dot-canidate
+                            if candidate.status == "Ливнул"
+                                span.black-dot-canidate     
+                            if candidate.status == "Исключен"
+                                span.red-dot-canidate
+                            img(src=`${candidate.photo}` alt=`${candidate.photo}`)
+                            
+                        header.card__header
+                            h1.product__title #{candidate.birthDate}
+                        .card__actions
+                            a(href=`/candidate/${candidate._id}` class="btn") Редактировать
+                        .card__actions    
+                            form(action="/delete", method="post")
+                                input(type="hidden", name="candidateId" value=`${candidate._id}`)
+                                button.btn.danger(type="submit") Удалить
+        else
+            h1 Тут нехуй делать

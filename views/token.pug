@@ -1,0 +1,18 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        form.product-form(action="/token",  method="POST")
+            .form-control
+                label(for="token") Токен
+                input(type="token", name="token", value=`${token.token}`)#token
+            .form-control
+                a(href="http://", target="_blank", rel="noopener noreferrer") Получить новый токен
+            button.btn(type="submit") Сохранить
